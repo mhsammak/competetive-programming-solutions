@@ -24,7 +24,7 @@ int main() {
             }
         }
 
-        for (auto it = lists.begin(); it != lists.end(); ++it {
+        for (auto it = lists.begin(); it != lists.end(); ++it) {
             cout << *it;
         }
         cout << '\n';
@@ -32,3 +32,4 @@ int main() {
     
     return 0;
 }
+    
