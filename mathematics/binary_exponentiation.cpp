@@ -20,7 +20,7 @@ ll power_recursive(ll a, ll b) {
 
 ll power_iterative(ll a, ll b) {
     ll result = 1;
-    while (b > 0) {
+    while (b) {
         if (b % 2) {
             result *= a;
         }
@@ -30,6 +30,18 @@ ll power_iterative(ll a, ll b) {
     return result;
 }
 
+ll multiply(ll a, ll b) {
+    ll result = 0;
+    while (b) {
+        if (b % 2) {
+            result += a;
+        }
+        a += a;
+        b /= 2;
+    }
+    return result;
+}
+
 int main() {
-    cout << power_recursive(2, 4) << endl;    
+    cout << multiply(11, 11) << endl;    
 }
