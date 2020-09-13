@@ -21,7 +21,7 @@ int gcdWithCoef(int a, int b, int& x, int& y) {
     if (b == 0) {
         x = 1;
         y = 0;
-        return 1;
+        return a;
     }
     int x1, y1;
     int gcd = gcdWithCoef(b, a % b, x1, y1);
@@ -31,5 +31,7 @@ int gcdWithCoef(int a, int b, int& x, int& y) {
 }
 
 int main() {
-    
+    int x, y;
+    int g = gcdWithCoef(8, 20, x, y);
+    printf("GCD of %d and %d: %d with coefficients %d and %d\n", 8, 20, g, x, y);
 }
