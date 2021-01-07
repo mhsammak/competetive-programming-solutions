@@ -1,7 +1,8 @@
-#include <iostream>
-#include <fstream>
-#include <string>
 #include <cstring>
+#include <fstream>
+#include <iostream>
+#include <map>
+#include <string>
 #include <vector>
 using namespace std;
 
@@ -36,8 +37,8 @@ int main() {
 
     const char *cstr = T.data();
     
-    string vwl = "aeiou";
-    string cnt = "bcdfghjklmnpqrstvwxyz";
+    char *vwl = "aeiou";
+    char *cnt = "bcdfghjklmnpqrstvwxyz";
     int digits = 0;
     int vowels = 0;
     int consnents = 0;
@@ -45,10 +46,20 @@ int main() {
     for (int i = 0; i < T.size(); i++) {
         if (isdigit(T.at(i))) {
             digits++;
-        } else if (find(vwl, T.at(i)) != -1) {
+        } else if (strchr(vwl, T.at(i)) != NULL) {
             vowels++;
-        } else if (find(cnt, T.at(i)) != -1) {
+        } else if (strchr(cnt, T.at(i)) != NULL) {
             consnents++;
         }
     }
+
+    vector<string> tokens;
+    map<string, int> tokenFreq;
+    char *t = new char[T.size() + 1];
+    strcpy(t, T.c_str());
+    for (p = strtok(t, " ."); p; p = strtok(NULL, " .")) {
+        tokens.push_back(p);
+        tokenFreq[p]++;
+    }
+
 }
