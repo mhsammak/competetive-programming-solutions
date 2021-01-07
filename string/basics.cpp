@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 using namespace std;
 
 int main() {
@@ -21,5 +22,14 @@ int main() {
         } else {
             T = T + " " + line;
         }
+    }
+
+    string P = "Some substring";
+    vector<int> pos;
+    int start = 0;
+    int idx;
+    while ((idx = T.find(P, start)) != -1) {
+        pos.push_back(idx);
+        start = idx;
     }
 }
