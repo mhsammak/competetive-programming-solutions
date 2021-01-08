@@ -38,7 +38,23 @@ void kmpProcess(int *table, string *p) {
 void kmpSearch(string t, string p) {
     int table[p.size()];
     kmpProcess(table, &p);
+    
+    int n = t.size();
+    int m = p.size();
+    int i = 0;
+    int j = 0;
 
+    while (i < n) {
+        while (j >= 0 && t[i] != p[j]) {
+            j = table[j];
+        }
+        i++;
+        j++;
+        if (j == m) {
+            cout << "Found pattern at index " << i - j << endl;
+            j = table[j];
+        }
+    }
 }
 
 int main() {
