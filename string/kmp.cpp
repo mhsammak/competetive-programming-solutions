@@ -19,6 +19,28 @@ void naiveSearch(string t, string p) {
     }
 }
 
+void kmpProcess(int *table, string *p) {
+    int m = p->size();
+    int i = 0;
+    int j = -1;
+    table[0] = -1;
+
+    while (i < m) {
+        while (j >= 0 && p[i] != p[j]) {
+            j = table[j];
+        }
+        i++;
+        j++;
+        table[i] = j;
+    }
+}
+
+void kmpSearch(string t, string p) {
+    int table[p.size()];
+    kmpProcess(table, &p);
+
+}
+
 int main() {
 
 }
