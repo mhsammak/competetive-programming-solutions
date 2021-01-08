@@ -57,6 +57,7 @@ int main() {
     map<string, int> tokenFreq;
     char *t = new char[T.size() + 1];
     strcpy(t, T.c_str());
+    char *p;
     for (p = strtok(t, " ."); p; p = strtok(NULL, " .")) {
         tokens.push_back(p);
         tokenFreq[p]++;
