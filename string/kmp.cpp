@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
 void naiveSearch(string t, string p) {
@@ -19,19 +20,23 @@ void naiveSearch(string t, string p) {
     }
 }
 
-void kmpProcess(int *table, string *p) {
-    int m = p->size();
-    int i = 0;
-    int j = -1;
-    table[0] = -1;
+vector<int> getLps(const string *p) {
+    vector<int> lps(p->length());
+    int idx = 0;
 
-    while (i < m) {
-        while (j >= 0 && p[i] != p[j]) {
-            j = table[j];
+    for (int i = 1; i < p->length(); ) {
+        if (p->at(idx) == p->at(i)) {
+            lps[i] = idx + 1;
+            idx++;
+            i++;
+        } else {
+            if (idx != 0) {
+                idx = lps[idx - 1];
+            } else {
+                lps[i] = 0;
+                i++;
+            }
         }
-        i++;
-        j++;
-        table[i] = j;
     }
 }
 
