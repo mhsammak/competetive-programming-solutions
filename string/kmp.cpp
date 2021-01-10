@@ -38,27 +38,38 @@ vector<int> getLps(const string *p) {
             }
         }
     }
+    return lps;
 }
 
 void kmpSearch(string t, string p) {
-    int table[p.size()];
-    kmpProcess(table, &p);
+    vector<int> lps = getLps(&p);
     
     int n = t.size();
     int m = p.size();
     int i = 0;
     int j = 0;
+    bool found = false;
 
     while (i < n) {
-        while (j >= 0 && t[i] != p[j]) {
-            j = table[j];
+        if (t[i] == p[j]) {
+            i++;
+            j++;
+        } else {
+            if (j != 0) {
+                j = lps[j - 1];
+            } else {
+                i++;
+            }
         }
-        i++;
-        j++;
         if (j == m) {
-            cout << "Found pattern at index " << i - j << endl;
-            j = table[j];
+            found = true;
+            cout << "Found match at " << i - m << endl;
+            j = lps[j - 1];
         }
+    }
+
+    if (!found) {
+        cout << "No match found!" << endl;
     }
 }
 
